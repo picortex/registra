@@ -11,6 +11,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(projects.registraCore)
                 api(projects.registraApiCore)
                 api(projects.pioneRest)
                 api(projects.bitframeServiceBuilderApiKtor)

@@ -11,6 +11,6 @@ import kotlin.js.JsExport
 
 interface SignUpApi {
     fun signUp(params: SignUpParams): Later<SignUpParams>
-    fun verify(params: VerificationParams): Later<SignUpParams>
-    fun sendVerificationLink(params: VerificationLinkParams): Later<SignUpParams>
+    fun verify(params: VerificationParams): Later<VerificationParams>
+    fun sendVerificationLink(params: VerificationLinkParams): Later<VerificationLinkParams>
 }
