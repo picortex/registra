@@ -2,24 +2,27 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     id("tz.co.asoft.library")
+    id("org.jetbrains.dokka")
 }
 
 kotlin {
-    jvm { library() }
-    js(IR) { library() }
+    jvm {
+        library()
+    }
+    js(IR) {
+        library()
+    }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.registraApiCore)
-                api(projects.registraDaod)
-                api(projects.bitframeServiceBuilderApiMock)
+
             }
         }
 
         val commonTest by getting {
             dependencies {
-                api(projects.registraApiTest)
+                api(projects.expectCoroutines)
             }
         }
     }

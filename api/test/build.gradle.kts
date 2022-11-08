@@ -12,14 +12,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiCore)
-                api(projects.registraDaod)
-                api(projects.bitframeServiceBuilderApiMock)
-            }
-        }
-
-        val commonTest by getting {
-            dependencies {
-                api(projects.registraApiTest)
+                api(projects.mailerMock)
+                api(projects.koncurrentLaterCoroutines)
+                api(projects.expectCoroutines)
             }
         }
     }

@@ -1,4 +1,8 @@
 # Unreleased
+## Added
+- SignUpServiceDaod 
+- SignUpApiFake for testing purposes
+- Registra server sdk
 
 # 0.10.14
 
