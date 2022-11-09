@@ -17,7 +17,7 @@ import kotlin.js.JsExport
 
 class VerificationViewModel(
     private val config: SignUpScopeConfig
-) : ViewModel<LazyState<SignUpParams>>(config.of(Pending)) {
+) : ViewModel<LazyState<VerificationParams>>(config.of(Pending)) {
 
     private val api get() = config.api
 

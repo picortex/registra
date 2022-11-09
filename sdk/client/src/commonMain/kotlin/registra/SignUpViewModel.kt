@@ -35,7 +35,7 @@ class SignUpViewModel(private val config: SignUpScopeConfig) : BaseViewModel(con
         }
     }
 
-    fun resendVerificationLink(): Later<SignUpParams> {
+    fun resendVerificationLink(): Later<VerificationLinkParams> {
         val email = form.fields.email.value ?: return Later.reject(IllegalArgumentException("Email is not entered"))
         return api.sendVerificationLink(email.toLinkParams())
     }
