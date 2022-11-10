@@ -19,7 +19,7 @@ import registra.params.VerificationParams
 class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : PiOneApi by PiOneApi(config), SignUpApi {
 
     override fun signUp(params: SignUpParams): Later<SignUpParams> = config.scope.later {
-        val response = client.post(path.signup) {
+        val response = client.post(config.endpoint.signup) {
             setBody(
                 codec.encodeToString(
                     PiOneUnAuthorized(body = mapOf(
@@ -41,7 +41,7 @@ class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : Pi
     }
 
     override fun verify(params: VerificationParams): Later<VerificationParams> = config.scope.later {
-        val response = client.post(path.verifyEmail) {
+        val response = client.post(config.endpoint.verifyEmail) {
             setBody(
                 codec.encodeToString(
                     PiOneUnAuthorized(body = mapOf(
@@ -63,7 +63,7 @@ class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : Pi
     }
 
     override fun sendVerificationLink(params: VerificationLinkParams): Later<VerificationLinkParams> = config.scope.later {
-        val response = client.post(path.sendVerificationLink) {
+        val response = client.post(config.endpoint.sendVerificationLink) {
             setBody(
                 codec.encodeToString(
                     PiOneUnAuthorized(body = mapOf(
