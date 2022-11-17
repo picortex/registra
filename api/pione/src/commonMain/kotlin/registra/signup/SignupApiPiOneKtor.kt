@@ -1,6 +1,5 @@
 package registra.signup
 
-import bitframe.ApiConfigKtor
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import koncurrent.Later
@@ -13,21 +12,14 @@ import pione.PiOneEndpoint
 import pione.PiOneUnAuthorized
 import registra.SignUpApi
 import registra.params.SignUpParams
-import registra.params.VerificationLinkParams
 import registra.params.VerificationParams
 
-class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : PiOneApi by PiOneApi(config), SignUpApi {
+class SignupApiPiOneKtor(override val config: SignUpApiConfigKtor<PiOneEndpoint>) : PiOneApi by PiOneApi(config), SignUpApi {
 
     override fun signUp(params: SignUpParams): Later<SignUpParams> = config.scope.later {
+        val payload = codec.encodeToString(PiOneUnAuthorized(body = mapOf("email" to params.email, "name" to params.name)))
         val response = client.post(config.endpoint.signup) {
-            setBody(
-                codec.encodeToString(
-                    PiOneUnAuthorized(body = mapOf(
-                        "email" to params.email,
-                        "name" to params.name
-                    ))
-                )
-            )
+            setBody(payload)
         }
 
         val text = response.bodyAsText()
@@ -41,15 +33,9 @@ class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : Pi
     }
 
     override fun verify(params: VerificationParams): Later<VerificationParams> = config.scope.later {
+        val payload = codec.encodeToString(PiOneUnAuthorized(body = mapOf("email" to params.email, "token" to params.token)))
         val response = client.post(config.endpoint.verifyEmail) {
-            setBody(
-                codec.encodeToString(
-                    PiOneUnAuthorized(body = mapOf(
-                        "email" to params.email,
-                        "token" to params.token
-                    ))
-                )
-            )
+            setBody(payload)
         }
 
         val text = response.bodyAsText()
@@ -62,23 +48,16 @@ class SignupApiPiOneKtor(override val config: ApiConfigKtor<PiOneEndpoint>) : Pi
         }
     }
 
-    override fun sendVerificationLink(params: VerificationLinkParams): Later<VerificationLinkParams> = config.scope.later {
+    override fun sendVerificationLink(email: String): Later<String> = config.scope.later {
+        val payload = codec.encodeToString(PiOneUnAuthorized(body = mapOf("email" to email, "url" to config.verificationUrl)))
         val response = client.post(config.endpoint.sendVerificationLink) {
-            setBody(
-                codec.encodeToString(
-                    PiOneUnAuthorized(body = mapOf(
-                        "email" to params.email,
-                        "url" to params.url
-                    ))
-                )
-            )
+            setBody(payload)
         }
-
         val text = response.bodyAsText()
         val result = codec.decodeFromString(JsonObject.serializer(), text)
 
         if (result["status"]?.jsonPrimitive?.content == "ok") {
-            params
+            email
         } else {
             throw RuntimeException(result["error"]?.jsonPrimitive?.content)
         }
