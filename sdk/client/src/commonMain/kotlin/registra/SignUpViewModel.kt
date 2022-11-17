@@ -8,11 +8,11 @@ import cache.save
 import koncurrent.Later
 import presenters.forms.toFormConfig
 import registra.params.SignUpParams
-import registra.params.VerificationLinkParams
 import viewmodel.BaseViewModel
+import viewmodel.ScopeConfig
 import kotlin.js.JsExport
 
-class SignUpViewModel(private val config: SignUpScopeConfig) : BaseViewModel(config) {
+class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewModel(config) {
 
     private val api get() = config.api
 
@@ -20,35 +20,23 @@ class SignUpViewModel(private val config: SignUpScopeConfig) : BaseViewModel(con
 
     val form = SignUpForm(config = config.toFormConfig()) {
         onSubmit { params ->
-            cache.save(SIGN_UP_CACHE_KEY, params).andThen {
+            cache.save(RegistraCacheKeys.SIGN_UP_CACHE_KEY, params).andThen {
                 api.signUp(params)
             }.andThen {
-                api.sendVerificationLink(params.email.toLinkParams())
+                api.sendVerificationLink(params.email)
             }
         }
     }
 
-    fun restorePreviousSession() = cache.load<SignUpParams>(SIGN_UP_CACHE_KEY).then {
+    fun restorePreviousSession() = cache.load<SignUpParams>(RegistraCacheKeys.SIGN_UP_CACHE_KEY).then {
         form.fields.apply {
             email.value = it.email
             name.value = it.name
         }
     }
 
-    fun resendVerificationLink(): Later<VerificationLinkParams> {
+    fun resendVerificationLink(): Later<String> {
         val email = form.fields.email.value ?: return Later.reject(IllegalArgumentException("Email is not entered"))
-        return api.sendVerificationLink(email.toLinkParams())
-    }
-
-    /**
-     * Converts the email to [VerificationLinkParams] params
-     */
-    private fun String.toLinkParams() = VerificationLinkParams(
-        email = this,
-        url = config.verificationUrl
-    )
-
-    companion object {
-        private const val SIGN_UP_CACHE_KEY = "registra.sign.up"
+        return api.sendVerificationLink(email)
     }
 }
