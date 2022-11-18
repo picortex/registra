@@ -1,4 +1,5 @@
 package registra
 
-class RegistraServer {
-}
+import bitframe.ServerConfig
+
+class RegistraServer(val config: ServerConfig<RegistraServicesDaod, RegistraEndpoint>)
