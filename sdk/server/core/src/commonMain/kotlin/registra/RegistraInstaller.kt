@@ -1,6 +1,8 @@
 package registra
 
 import bitframe.ApplicationConfigBuilder
+
+<<<<<<< HEAD
 import bitframe.annotations.BitframeServerDsl
 import bitframe.mapService
 
