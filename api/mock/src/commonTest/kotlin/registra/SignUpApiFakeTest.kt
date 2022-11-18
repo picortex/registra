@@ -1,16 +1,20 @@
 package registra
 
-import bitframe.ApiConfigMock
 import expect.expect
 import mailer.MockMailer
+import mailer.MockMailerConfig
+import registra.internal.SignUpApiFakeConfigImpl
 import kotlin.test.Test
 
 class SignUpApiFakeTest : AbstractSignUpServiceTest(api, mailer) {
     companion object {
-        val mailer = MockMailer()
-        val api = SignUpApiFake(
-            ApiConfigMock(mailer = mailer)
+        private val mailerConfig = MockMailerConfig(
+            marginWidth = "\t".repeat(3),
+            charsPerLine = 95
         )
+        private val mailer = MockMailer(mailerConfig)
+        val config = SignUpApiFakeConfigImpl(mailer = mailer)
+        val api = SignUpApiFake(config)
     }
 
     @Test

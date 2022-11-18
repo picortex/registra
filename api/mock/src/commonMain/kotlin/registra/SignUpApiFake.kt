@@ -1,7 +1,5 @@
 package registra
 
-import bitframe.ApiConfigMock
-
-class SignUpApiFake(config: ApiConfigMock = ApiConfigMock()) : SignUpApiDaod(config) {
+class SignUpApiFake(config: SignUpApiFakeConfig) : SignUpServiceDaod(config) {
     override fun toString(): String = "SignUpApiFake"
 }
