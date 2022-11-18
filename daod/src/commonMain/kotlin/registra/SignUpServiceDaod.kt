@@ -10,6 +10,7 @@ import registra.params.VerificationParams
 import kotlin.random.Random
 
 open class SignUpServiceDaod(private val config: SignUpServiceDaodConfig) : SignUpApi {
+
     private val mailer = config.mailer
     private val verificationUrl = config.verificationUrl
     private val candidates = config.database.get<Candidate>()
