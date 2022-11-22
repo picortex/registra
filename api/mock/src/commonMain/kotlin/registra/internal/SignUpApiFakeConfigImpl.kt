@@ -31,5 +31,5 @@ data class SignUpApiFakeConfigImpl(
     override val mailer: Mailer = MockMailer(),
     override val verificationUrl: String = "https://app.test.com",
 ) : SignUpApiFakeConfig {
-    override fun copy(verificationLink: String) = copy(verificationUrl = verificationUrl)
+    override fun copy(verificationUrl: String) = copy(appId = appId, verificationUrl = verificationUrl)
 }
