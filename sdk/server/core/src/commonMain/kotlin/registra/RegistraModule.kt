@@ -9,7 +9,6 @@ import bitframe.http.compulsoryBody
 import bitframe.post
 import io.ktor.http.*
 import koncurrent.later
-
 import registra.params.SignUpParams
 import registra.params.VerificationParams
 import registra.payloads.SendVerificationLinkPayload
