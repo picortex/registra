@@ -14,7 +14,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiCore)
-                api(projects.presentersKrono)
+                api(projects.presentersInputsIdentifier)
                 api(projects.liveKollections)
                 api(projects.bitframeServiceBuilderSdkClientCore)
             }
