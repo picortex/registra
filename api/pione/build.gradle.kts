@@ -4,6 +4,10 @@ plugins {
     id("tz.co.asoft.library")
 }
 
+val generated = buildDir.resolve("generated/commonTest/kotlin").apply {
+    if (!exists()) mkdirs()
+}
+
 kotlin {
     jvm { library() }
     js(IR) { library() }
@@ -19,11 +23,12 @@ kotlin {
         }
 
         val commonTest by getting {
+            kotlin.srcDirs(generated)
             dependencies {
                 implementation(projects.koncurrentLaterCoroutines)
                 implementation(projects.expectCoroutines)
                 implementation(projects.cacheMock)
-                implementation(projects.authenticatorApiPione)
+//                implementation(projects.authenticatorApiPione)
                 implementation(projects.bitframeServiceBuilderApiMock)
             }
         }
@@ -33,5 +38,19 @@ kotlin {
                 implementation(ktor.client.cio)
             }
         }
+    }
+}
+
+afterEvaluate {
+    val content = """
+        package registra.pione
+        
+        val API_URL = "${System.getenv("API_URL") ?: ""}"
+    """.trimIndent()
+    println(content)
+    generated.resolve("registra/pione/TestConfig.kt").apply {
+        if (parentFile?.exists() == false) mkdir(parent)
+        if (!exists()) createNewFile()
+        writeText(content)
     }
 }
