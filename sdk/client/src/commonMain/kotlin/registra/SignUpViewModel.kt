@@ -30,13 +30,13 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
 
     fun restorePreviousSession() = cache.load<SignUpParams>(RegistraCacheKeys.SIGN_UP_CACHE_KEY).then {
         form.fields.apply {
-            email.value = it.email
-            name.value = it.name
+            email.set(it.email)
+            name.set(it.name)
         }
     }
 
     fun resendVerificationLink(): Later<String> {
-        val email = form.fields.email.value ?: return Later.reject(IllegalArgumentException("Email is not entered"))
+        val email = form.fields.email.output.value ?: return Later.reject(IllegalArgumentException("Email is not entered"))
         return api.sendVerificationLink(email)
     }
 }
