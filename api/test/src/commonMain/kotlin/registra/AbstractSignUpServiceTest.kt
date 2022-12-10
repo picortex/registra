@@ -12,7 +12,7 @@ import kotlin.test.fail
 abstract class AbstractSignUpServiceTest(val api: SignUpApi, val mailer: MockMailer) {
 
     @Test
-    fun should_complete_the_whole_sign_up_process() = runTest {
+    fun should_be_able_to_sign_up_with_email_verification() = runTest {
         val name = "John Doe"
         val email = "john@doe.com"
 
@@ -29,6 +29,16 @@ abstract class AbstractSignUpServiceTest(val api: SignUpApi, val mailer: MockMai
 
         expect(res.email).toBe(email)
         expect(res.token).toBe(token)
+    }
+
+    @Test
+    fun should_be_able_to_sign_up_without_email_verification() = runTest {
+        val name = "Jane Doe"
+        val email = "jane@doe.com"
+
+        val res = api.signUp(SignUpParams(name, email)).await()
+
+        expect(res.email).toBe(email)
     }
 
     private fun String.extractUrl() = substringAfter("[").substringBefore("]")

@@ -15,7 +15,7 @@ class ParseEmailAndTokenTest {
     }
 
     @Test
-    fun should_fail_to_parse_link_when_it_doesnt_have_an_email() = runTest {
+    fun should_fail_to_parse_link_when_it_does_not_have_an_email() = runTest {
         val link = "https://picortex.com/verify"
         val error = expectFailure { VerificationViewModel.parseToken(link).await() }
         expect(error.message).toBe(VerificationViewModel.TOKEN_NOT_FOUND_IN_LINK.message)

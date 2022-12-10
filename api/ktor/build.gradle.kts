@@ -15,7 +15,7 @@ kotlin {
                 api(projects.registraApiCore)
                 api(projects.registraRest)
                 api(projects.registraApiRest)
-                api(projects.bitframeServiceBuilderApiKtor)
+                api(projects.bitframeServiceBuilderApiRestKtor)
                 api(projects.responseCore)
             }
         }
