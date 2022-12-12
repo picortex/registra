@@ -12,9 +12,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.registraApiCore)
-                api(projects.registraRest)
-                api(projects.registraApiRest)
+                api(projects.registraApiRestCore)
                 api(projects.bitframeServiceBuilderApiRestKtor)
                 api(projects.responseCore)
             }

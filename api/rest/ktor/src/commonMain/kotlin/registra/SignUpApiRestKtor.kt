@@ -4,7 +4,7 @@ import koncurrent.Later
 import registra.params.SignUpParams
 import registra.params.VerificationParams
 
-class SignUpApiKtor(val config: SignUpApiKtorConfig<RegistraEndpoint>) : SignUpApi {
+class SignUpApiRestKtor(val config: SignUpApiRestKtorConfig<RegistraEndpoint>) : SignUpApi {
     private fun todo() = Later.reject(NotImplementedError("Not yet implemented"))
 
     override fun signUp(params: SignUpParams): Later<SignUpParams> = todo()
