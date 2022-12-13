@@ -3,11 +3,8 @@
 
 package registra
 
-import cache.load
-import cache.save
 import koncurrent.Later
 import presenters.forms.toFormConfig
-import registra.params.SignUpParams
 import viewmodel.BaseViewModel
 import viewmodel.ScopeConfig
 import kotlin.js.JsExport
@@ -20,7 +17,7 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
 
     val form = SignUpForm(config = config.toFormConfig()) {
         onSubmit { params ->
-            cache.save(RegistraCacheKeys.SIGN_UP_CACHE_KEY, params).andThen {
+            cache.save(params).andThen {
                 api.signUp(params)
             }.andThen {
                 api.sendVerificationLink(params.email)
@@ -28,7 +25,7 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
         }
     }
 
-    fun restorePreviousSession() = cache.load<SignUpParams>(RegistraCacheKeys.SIGN_UP_CACHE_KEY).then {
+    fun restorePreviousSession() = cache.loadSignUpParams().then {
         form.fields.apply {
             email.set(it.email)
             name.set(it.name)

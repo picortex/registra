@@ -3,8 +3,6 @@
 
 package registra
 
-import cache.load
-import cache.save
 import koncurrent.Later
 import koncurrent.later.catch
 import presenters.states.Failure
@@ -12,8 +10,6 @@ import presenters.states.LazyState
 import presenters.states.Loading
 import presenters.states.Pending
 import presenters.states.Success
-import registra.RegistraCacheKeys.SIGN_UP_CACHE_KEY
-import registra.params.SignUpParams
 import registra.params.VerificationParams
 import viewmodel.ScopeConfig
 import viewmodel.ViewModel
@@ -23,13 +19,15 @@ class VerificationViewModel(
     private val config: ScopeConfig<SignUpApi>
 ) : ViewModel<LazyState<VerificationParams>>(config.of(Pending)) {
 
-    private val api get() = config.api
+    private val api = config.api
 
-    fun verify(link: String): Later<Any> = config.cache.load<SignUpParams>(SIGN_UP_CACHE_KEY).andThen { params ->
+    private val cache = config.cache
+
+    fun verify(link: String): Later<Any> = cache.loadSignUpParams().andThen { params ->
         ui.value = Loading(message = "Verifying your account (${params.email}), please wait . . . ")
         parseToken(link).andThen { api.verify(VerificationParams(params.email, it)) }
     }.andThen {
-        config.cache.save(RegistraCacheKeys.REGISTRA_PARAMS_KEY, it)
+        cache.save(it)
     }.then { params ->
         ui.value = Success(params)
     }.catch {
