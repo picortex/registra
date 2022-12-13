@@ -15,9 +15,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.registraCore)
-                api(projects.registraApiCore)
+                api(projects.registraApiRestCore)
                 api(projects.pioneRest)
+                api(projects.registraApiRestKtor)
                 api(projects.bitframeServiceBuilderApiRestKtor)
             }
         }
@@ -28,7 +28,7 @@ kotlin {
                 implementation(projects.koncurrentLaterCoroutines)
                 implementation(projects.expectCoroutines)
                 implementation(projects.cacheMock)
-//                implementation(projects.authenticatorApiPione)
+                implementation(projects.authenticatorApiRestPioneKtor)
                 implementation(projects.bitframeServiceBuilderApiMock)
             }
         }

@@ -11,10 +11,11 @@ import pione.PiOneApi
 import pione.PiOneEndpoint
 import pione.PiOneUnAuthorized
 import registra.SignUpApi
+import registra.SignUpApiRestKtorConfig
 import registra.params.SignUpParams
 import registra.params.VerificationParams
 
-class SignupApiPiOneKtor(override val config: SignUpApiConfigKtor<PiOneEndpoint>) : PiOneApi by PiOneApi(config), SignUpApi {
+class SignupApiPiOneKtor(override val config: SignUpApiRestKtorConfig<PiOneEndpoint>) : PiOneApi by PiOneApi(config), SignUpApi {
 
     override fun signUp(params: SignUpParams): Later<SignUpParams> = config.scope.later {
         val payload = codec.encodeToString(PiOneUnAuthorized(body = mapOf("email" to params.email, "name" to params.name)))
