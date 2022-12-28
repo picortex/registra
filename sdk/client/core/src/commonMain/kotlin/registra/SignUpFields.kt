@@ -10,14 +10,14 @@ import registra.params.SignUpParams as Params
 
 class SignUpFields : Fields() {
 
-    val name by text(
+    val name = text(
         name = Params::name,
         label = "Name",
         isRequired = true,
         hint = "Enter your personal name"
     )
 
-    val email by email(
+    val email = email(
         name = Params::email,
         label = "Email Address",
         hint = "Enter your email",
