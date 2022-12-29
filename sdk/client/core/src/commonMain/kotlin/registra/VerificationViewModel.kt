@@ -3,22 +3,19 @@
 
 package registra
 
+import kase.Failure
+import kase.Loading
+import kase.Success
 import koncurrent.FailedLater
 import koncurrent.Later
-import koncurrent.later.catch
-import presenters.states.Failure
-import presenters.states.LazyState
-import presenters.states.Loading
-import presenters.states.Pending
-import presenters.states.Success
 import registra.params.VerificationParams
+import viewmodel.LazyViewModel
 import viewmodel.ScopeConfig
-import viewmodel.ViewModel
 import kotlin.js.JsExport
 
 class VerificationViewModel(
     private val config: ScopeConfig<SignUpApi>
-) : ViewModel<LazyState<VerificationParams>>(config.of(Pending)) {
+) : LazyViewModel<VerificationParams>(config) {
 
     private val api = config.api
 
