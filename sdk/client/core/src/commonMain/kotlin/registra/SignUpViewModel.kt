@@ -4,6 +4,7 @@
 package registra
 
 import koncurrent.Later
+import koncurrent.FailedLater
 import presenters.forms.toFormConfig
 import viewmodel.BaseViewModel
 import viewmodel.ScopeConfig
@@ -33,7 +34,7 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
     }
 
     fun resendVerificationLink(): Later<String> {
-        val email = form.fields.email.output.value ?: return Later.reject(IllegalArgumentException("Email is not entered"))
+        val email = form.fields.email.output.value ?: return FailedLater(IllegalArgumentException("Email is not entered"))
         return api.sendVerificationLink(email)
     }
 }

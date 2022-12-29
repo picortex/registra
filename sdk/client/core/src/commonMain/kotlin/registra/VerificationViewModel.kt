@@ -3,6 +3,7 @@
 
 package registra
 
+import koncurrent.FailedLater
 import koncurrent.Later
 import koncurrent.later.catch
 import presenters.states.Failure
@@ -38,14 +39,14 @@ class VerificationViewModel(
 
     companion object {
         internal fun parseToken(link: String): Later<String> {
-            val residue = link.split("?").getOrNull(1) ?: return Later.reject(QUERY_PARAMS_NOT_PROVIDED)
+            val residue = link.split("?").getOrNull(1) ?: return FailedLater(QUERY_PARAMS_NOT_PROVIDED)
 
             val queryParams = residue.split("&").associate {
                 val (key, value) = it.split("=")
                 key to value
             }
-            val token = queryParams["token"] ?: return Later.reject(TOKEN_NOT_FOUND_IN_LINK)
-            return Later.resolve(token)
+            val token = queryParams["token"] ?: return FailedLater(TOKEN_NOT_FOUND_IN_LINK)
+            return Later(token)
         }
 
         internal val QUERY_PARAMS_NOT_PROVIDED = IllegalArgumentException("Query params where not provided")
