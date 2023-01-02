@@ -34,7 +34,7 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
     }
 
     fun resendVerificationLink(): Later<String> {
-        val email = form.fields.email.output.value ?: return FailedLater(IllegalArgumentException("Email is not entered"))
+        val email = form.fields.email.data.value.output ?: return FailedLater(IllegalArgumentException("Email is not entered"))
         return api.sendVerificationLink(email)
     }
 }
