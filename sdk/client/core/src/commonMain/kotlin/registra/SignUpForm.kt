@@ -3,9 +3,9 @@
 
 package registra
 
-import presenters.forms.Form
-import presenters.forms.FormActionsBuildingBlock
-import presenters.forms.FormConfig
+import presenters.Form
+import presenters.FormActionsBuildingBlock
+import presenters.FormConfig
 import kotlin.js.JsExport
 import registra.params.SignUpParams as Params
 

@@ -5,7 +5,7 @@ package registra
 
 import koncurrent.Later
 import koncurrent.FailedLater
-import presenters.forms.toFormConfig
+import presenters.toFormConfig
 import viewmodel.BaseViewModel
 import viewmodel.ScopeConfig
 import kotlin.js.JsExport

@@ -2,9 +2,9 @@
 
 package registra
 
-import presenters.forms.Fields
-import presenters.forms.fields.email
-import presenters.forms.fields.text
+import presenters.Fields
+import presenters.email
+import presenters.text
 import kotlin.js.JsExport
 import registra.params.SignUpParams as Params
 
