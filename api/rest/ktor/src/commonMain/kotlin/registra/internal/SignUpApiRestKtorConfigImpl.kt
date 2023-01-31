@@ -25,7 +25,7 @@ internal class SignUpApiRestKtorConfigImpl<out E>(
     override val http: HttpClient,
     override val verificationUrl: String
 ) : SignUpApiRestKtorConfig<E> {
-    override fun <E2> map(transformer: (E) -> E2) = SignUpApiRestKtorConfigImpl(appId, session, cache, bus, logger, executor, transformer(endpoint), codec, http, verificationUrl)
+    override fun <E2> map(transform: (E) -> E2) = SignUpApiRestKtorConfigImpl(appId, session, cache, bus, logger, executor, transform(endpoint), codec, http, verificationUrl)
 
     companion object Default : SignUpApiRestKtorConfig<Any> by SignUpApiRestKtorConfigImpl(
         appId = SIGN_UP_API_REST_CONFIG_DEFAULT.appId,
