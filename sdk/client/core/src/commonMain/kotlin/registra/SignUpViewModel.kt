@@ -16,7 +16,7 @@ class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewMode
 
     private val cache get() = config.cache
 
-    val form = SignUpForm(config = config.toFormConfig()) {
+    val form = SignUpForm(config = config.toFormConfig(exitOnSubmitted = false)) {
         onSubmit { params ->
             cache.save(params).andThen {
                 api.signUp(params)

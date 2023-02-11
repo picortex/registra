@@ -6,8 +6,10 @@ package registra
 import kase.Failure
 import kase.Loading
 import kase.Success
+import kase.toLazyState
 import koncurrent.FailedLater
 import koncurrent.Later
+import koncurrent.later.finally
 import registra.params.VerificationParams
 import viewmodel.LazyViewModel
 import viewmodel.ScopeConfig
@@ -26,12 +28,8 @@ class VerificationViewModel(
         parseToken(link).andThen { api.verify(VerificationParams(params.email, it)) }
     }.andThen {
         cache.save(it)
-    }.then { params ->
-        ui.value = Success(params)
-    }.catch {
-        ui.value = Failure(cause = it) {
-            onRetry { verify(link) }
-        }
+    }.finally {
+        ui.value = it.toLazyState { onRetry { verify(link) } }
     }
 
     companion object {
