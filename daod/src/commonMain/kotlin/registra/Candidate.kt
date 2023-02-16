@@ -13,5 +13,5 @@ data class Candidate(
     val status: Status = Status.Submitted(),
     override val deleted: Boolean = false
 ) : Savable {
-    override fun copySavable(uid: String, deleted: Boolean) = Candidate(uid, name, email, token, status, deleted)
+    override fun copy(uid: String, deleted: Boolean) = Candidate(uid, name, email, token, status, deleted)
 }
