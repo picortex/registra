@@ -14,16 +14,16 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiCore)
-                api(projects.presentersInputsIdentifier)
-                api(projects.liveKollections)
+                // api(projects.symphonyInputsIdentifier)
+                api(projects.cinematicLiveKollections)
                 api(projects.bitframeServiceBuilderSdkClientCore)
             }
         }
 
         val commonTest by getting {
             dependencies {
-                api(projects.liveTest)
-                api(projects.expectCoroutines)
+                api(projects.cinematicLiveTest)
+                api(projects.kommanderCoroutines)
             }
         }
     }

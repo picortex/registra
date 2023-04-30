@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 api(projects.registraDaod)
                 api(projects.registraRest)
-                api(projects.liveKollections)
+                api(projects.cinematicLiveKollections)
                 api(projects.bitframeServiceBuilderSdkServerCore)
                 api(projects.bitframeSdkServerCore)
             }
@@ -23,8 +23,8 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                api(projects.liveTest)
-                api(projects.expectCoroutines)
+                api(projects.cinematicLiveTest)
+                api(projects.kommanderCoroutines)
             }
         }
     }

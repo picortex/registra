@@ -14,14 +14,14 @@ kotlin {
             dependencies {
                 api(projects.registraCore)
                 api(projects.bitframeServiceBuilderDaod)
-                api(projects.koncurrentPrimitivesCoroutines)
+                api(projects.koncurrentExecutorsCoroutines)
                 api(projects.koncurrentLaterCoroutines)
             }
         }
 
         val commonTest by getting {
             dependencies {
-                api(projects.expectCoroutines)
+                api(projects.kommanderCoroutines)
             }
         }
     }

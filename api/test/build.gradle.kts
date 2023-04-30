@@ -14,7 +14,7 @@ kotlin {
                 api(projects.registraApiCore)
                 api(projects.mailerMock)
                 api(projects.koncurrentLaterCoroutines)
-                api(projects.expectCoroutines)
+                api(projects.kommanderCoroutines)
             }
         }
     }
