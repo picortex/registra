@@ -3,4 +3,4 @@ package registra
 import registra.internal.RegistraScopeImpl
 import viewmodel.ScopeConfig
 
-inline fun RegistraScope(config: ScopeConfig<RegistraApi>): RegistraScope = RegistraScopeImpl(config)
+inline fun RegistraScope(config: RegistraScopeConfig<RegistraApi>): RegistraScope = RegistraScopeImpl(config)

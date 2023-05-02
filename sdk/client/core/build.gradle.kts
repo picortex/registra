@@ -4,7 +4,7 @@ plugins {
     id("tz.co.asoft.library")
 }
 
-val tmp = 2
+description = "A kotlin multiplatform sdk registration"
 
 kotlin {
     jvm { library() }
@@ -14,9 +14,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiCore)
-                // api(projects.symphonyInputsIdentifier)
                 api(projects.cinematicLiveKollections)
-                // api(projects.bitframeServiceBuilderSdkClientCore)
+
+                api(projects.hormoneCore)
+                api(projects.symphonyInputForm)
+                api(projects.symphonyInputIdentifier)
             }
         }
 

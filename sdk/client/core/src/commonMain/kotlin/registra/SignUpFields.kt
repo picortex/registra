@@ -2,9 +2,9 @@
 
 package registra
 
-import presenters.Fields
-import presenters.email
-import presenters.text
+import symphony.Fields
+import symphony.email
+import symphony.text
 import kotlin.js.JsExport
 import registra.params.SignUpParams as Params
 

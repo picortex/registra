@@ -1,6 +1,6 @@
 package registra
 
-import cache.Cache
+import keep.Cache
 import registra.params.SignUpParams
 import registra.params.VerificationParams
 

@@ -3,14 +3,13 @@
 
 package registra
 
+import cinematic.BaseScene
 import koncurrent.Later
 import koncurrent.FailedLater
-import presenters.toFormConfig
-import viewmodel.BaseViewModel
-import viewmodel.ScopeConfig
+import symphony.toFormConfig
 import kotlin.js.JsExport
 
-class SignUpViewModel(private val config: ScopeConfig<SignUpApi>) : BaseViewModel(config) {
+class SignUpScene(private val config: RegistraScopeConfig<SignUpApi>) : BaseScene() {
 
     private val api get() = config.api
 

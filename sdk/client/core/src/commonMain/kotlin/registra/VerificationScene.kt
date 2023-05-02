@@ -3,21 +3,19 @@
 
 package registra
 
-import kase.Failure
+import cinematic.LazyScene
 import kase.Loading
-import kase.Success
+import kase.Pending
 import kase.toLazyState
 import koncurrent.FailedLater
 import koncurrent.Later
 import koncurrent.later.finally
 import registra.params.VerificationParams
-import viewmodel.LazyViewModel
-import viewmodel.ScopeConfig
 import kotlin.js.JsExport
 
-class VerificationViewModel(
-    private val config: ScopeConfig<SignUpApi>
-) : LazyViewModel<VerificationParams>(config) {
+class VerificationScene(
+    private val config: RegistraScopeConfig<SignUpApi>
+) : LazyScene<VerificationParams>(Pending) {
 
     private val api = config.api
 
@@ -34,7 +32,7 @@ class VerificationViewModel(
 
     companion object {
         internal fun parseToken(link: String): Later<String> {
-            val residue = link.split("?").getOrNull(1) ?: return FailedLater(QUERY_PARAMS_NOT_PROVIDED)
+            val residue = link.split("?").getOrNull(1) ?: return FailedLater(TOKEN_NOT_FOUND_IN_LINK)
 
             val queryParams = residue.split("&").associate {
                 val (key, value) = it.split("=")
@@ -45,6 +43,6 @@ class VerificationViewModel(
         }
 
         internal val QUERY_PARAMS_NOT_PROVIDED = IllegalArgumentException("Query params where not provided")
-        internal val TOKEN_NOT_FOUND_IN_LINK = IllegalArgumentException("Could not obtain token to verify")
+        internal val TOKEN_NOT_FOUND_IN_LINK = IllegalArgumentException("Could not obtain verification token")
     }
 }
