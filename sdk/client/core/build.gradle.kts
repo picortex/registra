@@ -16,7 +16,7 @@ kotlin {
                 api(projects.registraApiCore)
                 // api(projects.symphonyInputsIdentifier)
                 api(projects.cinematicLiveKollections)
-                api(projects.bitframeServiceBuilderSdkClientCore)
+                // api(projects.bitframeServiceBuilderSdkClientCore)
             }
         }
 
