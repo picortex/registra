@@ -16,6 +16,7 @@ kotlin {
                 api(projects.registraApiCore)
                 api(projects.cinematicLiveKollections)
 
+                api(projects.captainCore)
                 api(projects.hormoneCore)
                 api(projects.symphonyInputForm)
                 api(projects.symphonyInputIdentifier)
