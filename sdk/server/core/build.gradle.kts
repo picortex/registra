@@ -16,7 +16,7 @@ kotlin {
                 api(projects.registraDaod)
                 api(projects.registraRest)
                 api(projects.cinematicLiveKollections)
-                api(projects.bitframeServiceBuilderSdkServerCore)
+                // api(projects.bitframeServiceBuilderSdkServerCore)
                 api(projects.bitframeSdkServerCore)
             }
         }
