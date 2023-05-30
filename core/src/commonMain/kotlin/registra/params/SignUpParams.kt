@@ -8,5 +8,5 @@ import kotlin.js.JsExport
 @Serializable
 data class SignUpParams(
     val name: String,
-    val email: String
+    val email: String,
 )
