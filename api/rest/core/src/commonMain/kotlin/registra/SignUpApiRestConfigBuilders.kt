@@ -1,12 +1,12 @@
 package registra
 
 import bitframe.Session
-import cache.Cache
+import keep.Cache
 import events.EventBus
 import koncurrent.Executor
 import kotlinx.serialization.StringFormat
 import cinematic.MutableLive
-import logging.Logger
+import lexi.Logger
 import registra.internal.SignUpApiRestConfigImpl
 
 val SIGN_UP_API_REST_CONFIG_DEFAULT: SignUpApiRestConfig<Any, Any> = SignUpApiRestConfigImpl

@@ -2,13 +2,13 @@ package registra.internal
 
 import bitframe.API_CONFIG_REST_KTOR_DEFAULT
 import bitframe.Session
-import cache.Cache
+import keep.Cache
 import events.EventBus
 import io.ktor.client.*
 import koncurrent.CoroutineExecutor
 import kotlinx.serialization.StringFormat
 import cinematic.MutableLive
-import logging.Logger
+import lexi.Logger
 import registra.SIGN_UP_API_REST_CONFIG_DEFAULT
 import registra.SignUpApiRestKtorConfig
 
