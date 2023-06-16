@@ -12,7 +12,7 @@ import registra.params.SignUpParams as Params
 class SignUpForm(
     heading: String = "Create an account",
     details: String = "Signup in less than two minutes",
-    config: FormConfig<Params>,
+    config: FormConfig,
     initializer: FormActionsBuildingBlock<Params, String>
 ) : Form<SignUpFields, Params, String>(
     heading = heading,

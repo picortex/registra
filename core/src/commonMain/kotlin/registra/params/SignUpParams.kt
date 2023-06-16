@@ -7,6 +7,6 @@ import kotlin.js.JsExport
 
 @Serializable
 data class SignUpParams(
-    val name: String,
-    val email: String,
+    var name: String,
+    var email: String,
 )
