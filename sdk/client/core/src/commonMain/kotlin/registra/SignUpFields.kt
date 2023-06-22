@@ -3,6 +3,7 @@
 
 package registra
 
+import neat.required
 import symphony.Fields
 import symphony.email
 import symphony.text
@@ -14,14 +15,12 @@ class SignUpFields : Fields<Params>(Params("", "")) {
     val name = text(
         name = output::name,
         label = "Name",
-        isRequired = true,
         hint = "Enter your personal name"
-    )
+    ) { required() }
 
     val email = email(
         name = output::email,
         label = "Email Address",
         hint = "Enter your email",
-        isRequired = true
-    )
+    ) { required() }
 }

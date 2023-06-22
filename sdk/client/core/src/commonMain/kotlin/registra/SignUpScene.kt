@@ -4,9 +4,10 @@
 package registra
 
 import cinematic.BaseScene
-import koncurrent.Later
 import koncurrent.FailedLater
-import symphony.toFormConfig
+import koncurrent.Later
+import symphony.toSubmitConfig
+import symphony.toForm
 import kotlin.js.JsExport
 
 class SignUpScene(private val config: RegistraScopeConfig<SignUpApi>) : BaseScene() {
@@ -15,7 +16,11 @@ class SignUpScene(private val config: RegistraScopeConfig<SignUpApi>) : BaseScen
 
     private val cache get() = config.cache
 
-    val form = SignUpForm(config = config.toFormConfig(exitOnSubmitted = false)) {
+    val form = SignUpFields().toForm(
+        heading = "Create an account",
+        details = "Signup in less than two minutes",
+        config = config.toSubmitConfig()
+    ) {
         onSubmit { params ->
             cache.save(params).andThen {
                 api.signUp(params)
@@ -33,7 +38,7 @@ class SignUpScene(private val config: RegistraScopeConfig<SignUpApi>) : BaseScen
     }
 
     fun resendVerificationLink(): Later<String> {
-        val email = form.fields.email.data.value.output ?: return FailedLater(IllegalArgumentException("Email is not entered"))
+        val email = form.fields.email.output ?: return FailedLater(IllegalArgumentException("Email is not entered"))
         return api.sendVerificationLink(email)
     }
 }
