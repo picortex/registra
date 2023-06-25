@@ -18,7 +18,7 @@ kotlin {
                 api(projects.registraApiRestCore)
                 api(projects.pioneRest)
                 api(projects.registraApiRestKtor)
-                api(projects.bitframeServiceBuilderApiRestKtor)
+//                api(projects.bitframeServiceBuilderApiRestKtor)
             }
         }
 
