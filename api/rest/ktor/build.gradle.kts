@@ -13,7 +13,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiRestCore)
-//                api(projects.bitframeServiceBuilderApiRestKtor)
+                api(projects.bitframeServiceBuilderApiRestKtor)
                 api(projects.responseCore)
             }
         }
