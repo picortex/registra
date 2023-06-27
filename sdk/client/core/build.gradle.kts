@@ -18,7 +18,6 @@ kotlin {
 
                 api(projects.captainNavigatorApi)
                 api(projects.hormoneCore)
-                api(projects.symphonyInputForm)
                 api(projects.symphonyInputIdentifier)
             }
         }
