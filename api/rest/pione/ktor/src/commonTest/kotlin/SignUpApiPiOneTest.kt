@@ -1,4 +1,5 @@
 import expect.expect
+import kommander.expect
 import koncurrent.later.await
 import kotlinx.coroutines.test.runTest
 import registra.params.SignUpParams
@@ -14,7 +15,7 @@ class SignUpApiPiOneTest {
     fun should_easily_signup() = runTest {
         val params = SignUpParams(name = "George Corp", email = "george.sechu@gmail.com")
         val res = api.signUp(params).await()
-        expect(res.name).toBe("George Corp")
+        expect<String?>(res.name).toBe("George Corp")
     }
 
     @Test

@@ -1,6 +1,7 @@
 package registra
 
 import expect.expect
+import kommander.expect
 import koncurrent.later.await
 import kotlinx.coroutines.test.runTest
 import mailer.MockMailer
@@ -27,7 +28,7 @@ abstract class AbstractSignUpServiceTest(val api: SignUpApi, val mailer: MockMai
 
         val res = api.verify(VerificationParams(email, token)).await()
 
-        expect(res.email).toBe(email)
+        expect<String>(res.email).toBe(email)
         expect(res.token).toBe(token)
     }
 
