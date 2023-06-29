@@ -25,7 +25,7 @@ class SignUpScene(private val config: RegistraScopeConfig<SignUpApi>) : BaseScen
             cache.save(params).andThen {
                 api.signUp(params)
             }.andThen {
-                api.sendVerificationLink(params.email)
+                api.sendVerificationLink(params.email ?: "")
             }
         }
     }

@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 api(projects.registraApiCore)
                 api(projects.cinematicLiveKollections)
-
+                api(projects.cinematicSceneCore)
                 api(projects.captainNavigatorApi)
                 api(projects.hormoneCore)
                 api(projects.symphonyInputIdentifier)

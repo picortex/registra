@@ -23,7 +23,7 @@ class VerificationScene(
 
     fun verify(link: String): Later<Any> = cache.loadSignUpParams().andThen { params ->
         ui.value = Loading(message = "Verifying your account (${params.email}), please wait . . . ")
-        parseToken(link).andThen { api.verify(VerificationParams(params.email, it)) }
+        parseToken(link).andThen { api.verify(VerificationParams(params.email ?: "", it)) }
     }.andThen {
         cache.save(it)
     }.finally {
