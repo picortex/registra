@@ -17,8 +17,6 @@ kotlin {
             dependencies {
                 api(projects.registraApiCore)
                 api(projects.pioneRest)
-//                api(projects.registraApiRestKtor)
-//                api(projects.bitframeServiceBuilderApiRestKtor)
             }
         }
 
