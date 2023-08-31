@@ -12,7 +12,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.koncurrent.later.coroutines)
-                api(projects.kronoApi)
+                api(libs.krono.api)
                 api(projects.bitframeActorUser)
             }
         }
