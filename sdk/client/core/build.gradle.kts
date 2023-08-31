@@ -17,7 +17,7 @@ kotlin {
                 api(libs.cinematic.live.kollections)
                 api(libs.cinematic.scene.core)
                 api(libs.captain.navigator.api)
-                api(projects.hormoneCore)
+                api(libs.hormone.core)
                 api(projects.symphonyInputIdentifier)
             }
         }
