@@ -14,8 +14,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(projects.registraApiCore)
-                api(projects.cinematicLiveKollections)
-                api(projects.cinematicSceneCore)
+                api(libs.cinematic.live.kollections)
+                api(libs.cinematic.scene.core)
                 api(projects.captainNavigatorApi)
                 api(projects.hormoneCore)
                 api(projects.symphonyInputIdentifier)
@@ -24,7 +24,7 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                api(projects.cinematicLiveTest)
+                api(libs.cinematic.live.test)
                 api(libs.kommander.coroutines)
             }
         }
