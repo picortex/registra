@@ -24,7 +24,7 @@ kotlin {
             kotlin.srcDirs(generated)
             dependencies {
                 implementation(projects.koncurrentLaterCoroutines)
-                implementation(projects.kommanderCoroutines)
+                implementation(libs.kommander.coroutines)
                 implementation(projects.keepMock)
                 implementation(projects.authenticatorApiRestPioneKtor)
                 implementation(projects.bitframeServiceBuilderApiMock)
