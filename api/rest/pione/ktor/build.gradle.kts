@@ -25,7 +25,7 @@ kotlin {
             dependencies {
                 implementation(libs.koncurrent.later.coroutines)
                 implementation(libs.kommander.coroutines)
-                implementation(projects.keepMock)
+                implementation(libs.keep.mock)
                 implementation(projects.authenticatorApiRestPioneKtor)
                 implementation(projects.bitframeServiceBuilderApiMock)
             }
