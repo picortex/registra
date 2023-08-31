@@ -11,7 +11,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(projects.koncurrentLaterCoroutines)
+                api(libs.koncurrent.later.coroutines)
                 api(projects.kronoApi)
                 api(projects.bitframeActorUser)
             }

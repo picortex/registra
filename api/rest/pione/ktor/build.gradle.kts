@@ -23,7 +23,7 @@ kotlin {
         val commonTest by getting {
             kotlin.srcDirs(generated)
             dependencies {
-                implementation(projects.koncurrentLaterCoroutines)
+                implementation(libs.koncurrent.later.coroutines)
                 implementation(libs.kommander.coroutines)
                 implementation(projects.keepMock)
                 implementation(projects.authenticatorApiRestPioneKtor)

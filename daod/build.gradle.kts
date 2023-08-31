@@ -14,8 +14,8 @@ kotlin {
             dependencies {
                 api(projects.registraCore)
                 api(projects.bitframeServiceBuilderDaod)
-                api(projects.koncurrentExecutorsCoroutines)
-                api(projects.koncurrentLaterCoroutines)
+                api(libs.koncurrent.executors.coroutines)
+                api(libs.koncurrent.later.coroutines)
             }
         }
 

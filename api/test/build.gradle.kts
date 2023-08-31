@@ -13,7 +13,7 @@ kotlin {
             dependencies {
                 api(projects.registraApiCore)
                 api(projects.mailerMock)
-                api(projects.koncurrentLaterCoroutines)
+                api(libs.koncurrent.later.coroutines)
                 api(libs.kommander.coroutines)
             }
         }
